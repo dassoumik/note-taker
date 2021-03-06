@@ -4,9 +4,7 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 let noteListLi = [];
-console.log(window.location.pathname);
 if (window.location.pathname === '/notes') {
-  console.log("in notes.html")
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
@@ -34,11 +32,7 @@ const getNotes = () =>
       'Content-Type': 'application/json',
     },
   })
-  //  .then((response) => response.json())
-  // .then((data) => {
-  //   console.log(data);
-    
-  // })
+  
   .catch((error) => {
     console.error(error);
   });
@@ -76,18 +70,12 @@ const renderActiveNote = () => {
   }
   const activeElement = document.querySelectorAll(".list-group-item");
   for(const item of activeElement) {
-    console.log(JSON.parse(item.dataset.note).id);
-    console.log(activeNote.id);
    if (JSON.parse(item.dataset.note).id == activeNote.id) {
-     console.log(item);
      item.querySelector(".save-active-note").classList.remove('d-none');
    }
   }
-  // activeElement.querySelector(".save-active-note").classList.add('d-none');
 
   if (activeNote.id) {
-    // noteTitle.setAttribute('readonly', true);
-    // noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
   } else {
@@ -97,14 +85,11 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = () => {
-  console.log("in click save");
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
-  console.log(newNote);
   saveNote(newNote).then((res) => {
-    console.log(res);
     getAndRenderNotes();
     activeNote = {};
     renderActiveNote();
@@ -124,9 +109,7 @@ const handleNoteDelete = (e) => {
   }
 
   deleteNote(noteId).then(() => {
-    console.log(noteId);
     let element = document.getElementById(noteId);
-    console.log(element);
     element.remove();
     getAndRenderNotes();
     renderActiveNote();
@@ -145,14 +128,11 @@ function saveEditedNote(e) {
   e.stopPropagation();
   const note = e.target;
   noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-  // noteTitle = JSON.parse(note.parentElement.getAttribute('data-note')).title;
-  // noteText = JSON.parse(note.parentElement.getAttribute('data-note')).text;
   const noteData = {
                     "id": noteId,
                     "title": noteTitle.value,
                     "text": noteText.value
                    }
-  console.log(note);
   fetch('/api/notes', {
     method: 'POST',
     headers: {
@@ -163,7 +143,6 @@ function saveEditedNote(e) {
     getAndRenderNotes();
     activeNote = {};
     renderActiveNote();
-  
 });
 }
 
@@ -173,11 +152,7 @@ const handleNoteView = (e) => {
   for(const element of document.querySelectorAll(".list-group .list-group-item .save-active-note")){
     element.classList.add('d-none');
   }
-  // thisSpLi = e.target;
-  // console.log(thisSpLi);
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
-  // document.thisSpLi.parentElement.querySelector('.save-active-note').classList.remove('d-none');
-  console.log(activeNote);
   e.target.parentElement.querySelector(".save-active-note").classList.remove('d-none');
   renderActiveNote();
 };
@@ -202,11 +177,9 @@ const handleRenderSaveBtn = () => {
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
- console.log(jsonNotes);
   if (window.location.pathname === '/notes') {
     noteListLi = document.querySelectorAll('.list-group-item');
     noteListLi.forEach((el) => (el.remove()));
-    // noteListLi.forEach((el) => (el.innerHTML = ''));
   }
 
   let noteListItems = [];
@@ -273,16 +246,13 @@ const renderNoteList = async (notes) => {
 
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
-    console.log(li);
     li.dataset.note = JSON.stringify(note);
     li.setAttribute("id", note.id);
 
     noteListItems.push(li);
-    console.log(noteListItems);
     noteList.append(li);
     
     noteListLi = document.querySelectorAll('.list-group-item');
-    console.log(noteListLi);
   });
 
   if (window.location.pathname === '/notes') {
