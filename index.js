@@ -14,12 +14,11 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => res.sendFile(__dirname + '/public/index.html'));
-app.get('*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
+
 app.get('/notes', (req, res) => res.sendFile(__dirname + '/public/notes.html'));
+
 app.delete('/api/notes/:id', (req, res) => {
   notesData.splice(req.params.id - 1, 1);
-  console.log(notesData);
   writeToFile("./db/db.json", JSON.stringify(notesData));
 
   res.send(true);
@@ -28,7 +27,6 @@ app.delete('/api/notes/:id', (req, res) => {
 
 app.get('/api/notes', (req, res) => {
   res.json(notesData);
-  console.log(res);
 });
 app.post('/api/clear', (req, res) => {
   notesData.length = 0;
@@ -40,11 +38,9 @@ app.post('/api/clear', (req, res) => {
 });
 
 app.post('/api/notes', (req, res) => {
-  console.log("in post");
   notesId += 1;
   let notesDataTemp = {};
   notesDataTemp = req.body;
-  console.log(notesDataTemp.id + " notesDataTemp.id");
   if (notesDataTemp.id == null || notesDataTemp.id == undefined) {
     notesDataTemp.id = notesId;
     notesData.push(notesDataTemp);
@@ -56,15 +52,19 @@ app.post('/api/notes', (req, res) => {
       }
     }
   }
-  console.log(notesDataTemp);
-  console.log(notesData);
   res.json(true);
   writeToFile("./db/db.json", JSON.stringify(notesData));
 });
 
+app.get('/*', (req, res) => {
+  // res.set('Content-Type', 'html');
+  res.sendFile(path.join(__dirname, '../public/index.html'))
+});
+
+
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) =>
-    err ? console.error(err) : console.log('Readme logged!'));
+    err ? console.error(err) : console.log('JSON logged!'));
 }
 
 

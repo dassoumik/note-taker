@@ -1,6 +1,6 @@
 # Note Taker     
   ## ![](https://img.shields.io/badge/license-MIT-yellowgreen)
-  
+<hr>  
 
   ## Table of Content
    1. [Description](#Description)
