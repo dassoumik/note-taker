@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => res.sendFile(__dirname + '/public/index.html'));
+app.get('*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
 app.get('/notes', (req, res) => res.sendFile(__dirname + '/public/notes.html'));
 app.delete('/api/notes/:id', (req, res) => {
   notesData.splice(req.params.id - 1, 1);
