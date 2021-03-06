@@ -32,7 +32,7 @@ const getNotes = () =>
       'Content-Type': 'application/json',
     },
   })
-  
+
   .catch((error) => {
     console.error(error);
   });
@@ -55,7 +55,7 @@ const deleteNote = (id) =>
     },
   });
 
-  const deleteAllNote = () => 
+const deleteAllNote = () =>
   fetch(`/api/clear`, {
     method: 'POST',
     headers: {
@@ -65,14 +65,14 @@ const deleteNote = (id) =>
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
-  for(const element of document.querySelectorAll(".list-group .list-group-item .save-active-note")){
+  for (const element of document.querySelectorAll(".list-group .list-group-item .save-active-note")) {
     element.classList.add('d-none');
   }
   const activeElement = document.querySelectorAll(".list-group-item");
-  for(const item of activeElement) {
-   if (JSON.parse(item.dataset.note).id == activeNote.id) {
-     item.querySelector(".save-active-note").classList.remove('d-none');
-   }
+  for (const item of activeElement) {
+    if (JSON.parse(item.dataset.note).id == activeNote.id) {
+      item.querySelector(".save-active-note").classList.remove('d-none');
+    }
   }
 
   if (activeNote.id) {
@@ -129,10 +129,10 @@ function saveEditedNote(e) {
   const note = e.target;
   noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
   const noteData = {
-                    "id": noteId,
-                    "title": noteTitle.value,
-                    "text": noteText.value
-                   }
+    "id": noteId,
+    "title": noteTitle.value,
+    "text": noteText.value
+  }
   fetch('/api/notes', {
     method: 'POST',
     headers: {
@@ -143,13 +143,13 @@ function saveEditedNote(e) {
     getAndRenderNotes();
     activeNote = {};
     renderActiveNote();
-});
+  });
 }
 
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
-  for(const element of document.querySelectorAll(".list-group .list-group-item .save-active-note")){
+  for (const element of document.querySelectorAll(".list-group .list-group-item .save-active-note")) {
     element.classList.add('d-none');
   }
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
@@ -160,7 +160,7 @@ const handleNoteView = (e) => {
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
   console.log("in new nte evt list");
-  
+
   activeNote = {};
   renderActiveNote();
 };
@@ -195,8 +195,8 @@ const renderNoteList = async (notes) => {
 
     liEl.append(spanEl);
 
-    
-      
+
+
     if (delBtn) {
       const delBtnEl = document.createElement('i');
       delBtnEl.classList.add(
@@ -210,21 +210,21 @@ const renderNoteList = async (notes) => {
 
       liEl.append(delBtnEl);
     }
-    
-    const savBtnEl = document.createElement('i');
-      savBtnEl.classList.add(
-        'd-none',
-        'fas',
-        'fa-save',
-        'float-right',
-        'text-success',
-        'save-active-note',
-        'mr-2'
-      );
-      savBtnEl.addEventListener('click', saveEditedNote);
 
-      liEl.append(savBtnEl);
-    
+    const savBtnEl = document.createElement('i');
+    savBtnEl.classList.add(
+      'd-none',
+      'fas',
+      'fa-save',
+      'float-right',
+      'text-success',
+      'save-active-note',
+      'mr-2'
+    );
+    savBtnEl.addEventListener('click', saveEditedNote);
+
+    liEl.append(savBtnEl);
+
 
 
     return liEl;
@@ -251,7 +251,7 @@ const renderNoteList = async (notes) => {
 
     noteListItems.push(li);
     noteList.append(li);
-    
+
     noteListLi = document.querySelectorAll('.list-group-item');
   });
 
