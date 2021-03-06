@@ -6,8 +6,6 @@ const PORT = process.env.PORT || 8080;
 const dbJson = require('db-json');
 
 const notesData = require('./db/db.json');
-// let notesDataParsed = JSON.stringify(notesData);
-// console.log(notesDataParsed);
 let notesId = notesData.length;
 
 app.use(express.urlencoded({ extended: true }));
@@ -27,9 +25,7 @@ app.delete('/api/notes/:id', (req, res) =>{
 
 
 app.get('/api/notes', (req, res) => {res.json(notesData); console.log(res);});
-// app.get('*', (req, res) => {res.send("page displayed")})
 app.post('/api/clear', (req, res) => {
-    // Empty out the arrays of data
     notesData.length = 0;
     writeToFile("./db/db.json", JSON.stringify(notesData));  
 
@@ -37,13 +33,8 @@ app.post('/api/clear', (req, res) => {
   });
 
   app.post('/api/notes', (req, res) => {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body parsing middleware
     console.log("in post");
     notesId += 1;
-    // const bodyWId = JSON.parse(req.body).push(`"id": ${notesId}`);
-    // notesData.push(JSON.stingify(bodyWId));
     let notesDataTemp = {};
     notesDataTemp = req.body;
     console.log(notesDataTemp.id + " notesDataTemp.id");
