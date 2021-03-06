@@ -70,8 +70,11 @@ const renderActiveNote = () => {
   }
   const activeElement = document.querySelectorAll(".list-group-item");
   for (const item of activeElement) {
-    if (JSON.parse(item.dataset.note).id == activeNote.id) {
-      item.querySelector(".save-active-note").classList.remove('d-none');
+    if (item.dataset != undefined) {
+      console.log(item.dataset);
+      if (JSON.parse(item.dataset.note).id == activeNote.id) {
+        item.querySelector(".save-active-note").classList.remove('d-none');
+      }
     }
   }
 
@@ -104,15 +107,12 @@ const handleNoteDelete = (e) => {
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
-  if (activeNote.id === noteId) {
-    activeNote = {};
-  }
-
   deleteNote(noteId).then(() => {
     let element = document.getElementById(noteId);
     element.remove();
     getAndRenderNotes();
     renderActiveNote();
+    newNoteBtn.click();
   });
 };
 
@@ -159,8 +159,6 @@ const handleNoteView = (e) => {
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
-  console.log("in new nte evt list");
-
   activeNote = {};
   renderActiveNote();
 };
