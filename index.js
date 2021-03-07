@@ -7,7 +7,6 @@ const dbJson = require('db-json');
 
 const notesData = require('./db/db.json');
 let notesId = notesData.length;
-console.log(notesData, notesData.length);
 
 app.use(express.urlencoded({
   extended: true
@@ -21,13 +20,12 @@ app.get('/notes', (req, res) => res.sendFile(__dirname + '/public/notes.html'));
 app.delete('/api/notes/:id', (req, res) => {
   notesData.splice(req.params.id - 1, 1);
   let i = 1;
-  for(const element of notesData){
-      element.id = i;
-      i++;
+  for (const element of notesData) {
+    element.id = i;
+    i++;
   }
   notesId = notesData.length;
   writeToFile("./db/db.json", JSON.stringify(notesData));
-  console.log(notesData);
   res.send(true);
 });
 
@@ -46,7 +44,6 @@ app.post('/api/clear', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
   notesId++;
-  console.log(notesId);
   let notesDataTemp = {};
   notesDataTemp = req.body;
   if (notesDataTemp.id == null || notesDataTemp.id == undefined) {

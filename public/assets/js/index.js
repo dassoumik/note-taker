@@ -71,9 +71,9 @@ const renderActiveNote = () => {
   const activeElement = document.querySelectorAll(".list-group-item");
   for (const item of activeElement) {
     // if (item.dataset.note.title != 'No saved Notes')  {
-      if (JSON.parse(item.dataset.note).id == activeNote.id) {
-        item.querySelector(".save-active-note").classList.remove('d-none');
-      }
+    if (JSON.parse(item.dataset.note).id == activeNote.id) {
+      item.querySelector(".save-active-note").classList.remove('d-none');
+    }
     // }
   }
 
@@ -105,7 +105,6 @@ const handleNoteDelete = (e) => {
 
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-  console.log(noteId, e.target);
 
 
   deleteNote(noteId).then(() => {
@@ -249,7 +248,6 @@ const renderNoteList = async (notes) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
     li.setAttribute("id", note.id);
-    console.log(li.id);
 
 
     noteListItems.push(li);
