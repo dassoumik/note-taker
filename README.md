@@ -4,7 +4,7 @@
 
   ## Table of Content
    1. [Description](#Description)
-   2. [Link](#Link)
+   2. [Link](#Link and Screenshot)
    3. [Installation](#Installation)
    4. [Usage](#Usage)
    5. [License](#License)
@@ -21,9 +21,11 @@ their thoughts and keep track of tasks that need to be completed.
 <br>
   <br>
 
-  ## Link <br>
-  The deployed app is available in the below link.
-  [Notes Taker](https://secret-plateau-96475.herokuapp.com/)
+  ## Link and Screenshot <br>
+  The deployed app is available in the below link. <br>
+  [https://secret-plateau-96475.herokuapp.com/](https://secret-plateau-96475.herokuapp.com/) <br>
+  Screenshot <br>
+  ![](./public/assets/image/note-taker-screenshot.png)
 
   ## Installation <br>
   Please follow the below steps:
