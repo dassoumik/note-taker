@@ -1,10 +1,10 @@
 # Note Taker     
-  ## ![](https://img.shields.io/badge/license-MIT-yellowgreen)
-<hr>  
+  ## ![](https://img.shields.io/badge/license-MIT-yellowgreen) <br>
+  <br>
 
   ## Table of Content
    1. [Description](#Description)
-   2. [Link](#Link and Screenshot)
+   2. [App Link and Screenshot](#Link-Screenshot)
    3. [Installation](#Installation)
    4. [Usage](#Usage)
    5. [License](#License)
@@ -21,10 +21,10 @@ their thoughts and keep track of tasks that need to be completed.
 <br>
   <br>
 
-  ## Link and Screenshot <br>
+  ## App Link and Screenshot <br>
   The deployed app is available in the below link. <br>
   [https://secret-plateau-96475.herokuapp.com/](https://secret-plateau-96475.herokuapp.com/) <br>
-  Screenshot <br>
+  Screenshot 
   ![](./public/assets/image/note-taker-screenshot.png)
 
   ## Installation <br>
