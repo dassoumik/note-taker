@@ -19,7 +19,7 @@ app.get('/notes', (req, res) => res.sendFile(__dirname + '/public/notes.html'));
 
 app.delete('/api/notes/:id', (req, res) => {
   notesData.splice(req.params.id - 1, 1);
-  writeToFile("./db/db.json", JSON.stringify(notesData));
+  writeToFile("/db/db.json", JSON.stringify(notesData));
 
   res.send(true);
 });

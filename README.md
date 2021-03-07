@@ -4,12 +4,13 @@
 
   ## Table of Content
    1. [Description](#Description)
-   2. [Installation](#Installation)
-   3. [Usage](#Usage)
-   4. [License](#License)
-   5. [Contributing](#Contributing)
-   6. [Learnings](#Learnings)
-   7. [Questions](#Questions)  
+   2. [Link](#Link)
+   3. [Installation](#Installation)
+   4. [Usage](#Usage)
+   5. [License](#License)
+   6. [Contributing](#Contributing)
+   7. [Learnings](#Learnings)
+   8. [Questions](#Questions)  
    <br>
 
   ## Description <br>
@@ -19,6 +20,10 @@ to be able to write and save notes so that they can organize
 their thoughts and keep track of tasks that need to be completed.
 <br>
   <br>
+
+  ## Link <br>
+  The deployed app is available in the below link.
+  [Notes Taker](https://secret-plateau-96475.herokuapp.com/)
 
   ## Installation <br>
   Please follow the below steps:
