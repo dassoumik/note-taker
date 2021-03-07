@@ -70,11 +70,11 @@ const renderActiveNote = () => {
   }
   const activeElement = document.querySelectorAll(".list-group-item");
   for (const item of activeElement) {
-    if (item.dataset.note.title != 'No saved Notes')  {
+    // if (item.dataset.note.title != 'No saved Notes')  {
       if (JSON.parse(item.dataset.note).id == activeNote.id) {
         item.querySelector(".save-active-note").classList.remove('d-none');
       }
-    }
+    // }
   }
 
   if (activeNote.id) {
@@ -105,6 +105,8 @@ const handleNoteDelete = (e) => {
 
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+  console.log(noteId, e.target);
+
 
   deleteNote(noteId).then(() => {
     let element = document.getElementById(noteId);
@@ -230,7 +232,7 @@ const renderNoteList = async (notes) => {
 
   if (jsonNotes.length === 0) {
     const noNotesLi = createLi('No saved Notes', false);
-    noNotesLi.setAttribute("data-note", "{title: 'No saved Notes', text =' ' id: 0}");
+    // noNotesLi.setAttribute("data-note", "{title: 'No saved Notes', text =' ' id: 0}");
     noteListItems.push(noNotesLi);
   }
 
@@ -247,6 +249,7 @@ const renderNoteList = async (notes) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
     li.setAttribute("id", note.id);
+    console.log(li.id);
 
 
     noteListItems.push(li);
