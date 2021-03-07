@@ -25,6 +25,7 @@ app.delete('/api/notes/:id', (req, res) => {
       element.id = i;
       i++;
   }
+  notesId = notesData.length;
   writeToFile("./db/db.json", JSON.stringify(notesData));
   console.log(notesData);
   res.send(true);
@@ -44,7 +45,7 @@ app.post('/api/clear', (req, res) => {
 });
 
 app.post('/api/notes', (req, res) => {
-  notesId += 1;
+  notesId++;
   console.log(notesId);
   let notesDataTemp = {};
   notesDataTemp = req.body;
@@ -59,6 +60,7 @@ app.post('/api/notes', (req, res) => {
       }
     }
   }
+  notesId = notesData.length;
   res.json(true);
   writeToFile("./db/db.json", JSON.stringify(notesData));
 });
